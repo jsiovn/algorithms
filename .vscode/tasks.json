@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ts-node: run current file",
+      "type": "shell",
+      "command": "yarn ts-node ${file}"
+    },
+    {
+      "label": "vitest: run current test file",
+      "type": "shell",
+      "command": "yarn test run ${relativeFile}"
+    },
+    {
+      "label": "vitest: watch current test file",
+      "type": "shell",
+      "command": "yarn test ${relativeFile}",
+      "isBackground": true
+    }
+  ]
+}
