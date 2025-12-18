@@ -1,7 +1,7 @@
 {
-  "name": "typescript-vitest-starter",
+  "name": "algorithms",
   "version": "1.0.0",
-  "description": "TypeScript Vitest Starter Project",
+  "description": "A collection of algorithms and data structures implemented in TypeScript with comprehensive test coverage using Vitest",
   "scripts": {
     "test": "vitest",
     "test:ui": "vitest --ui"

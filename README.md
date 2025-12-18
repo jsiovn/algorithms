@@ -1,6 +1,6 @@
-# typescript-vitest-starter
+# algorithms
 
-A TypeScript starter project with Vitest for testing.
+Algorithms implemented in TypeScript with Vitest for testing.
 
 ## Features
 
