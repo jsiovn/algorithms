@@ -20,7 +20,7 @@ const testCases = [
 
 describe("insertionSortV1", () => {
   it.each(testCases)(
-    `should return correct values for test case #$id`,
+    `should return correctly for test case #$id`,
     ({ numbers, expected }) => {
       expect(insertionSortV1([...numbers])).toStrictEqual(expected);
     }
@@ -29,7 +29,7 @@ describe("insertionSortV1", () => {
 
 describe("insertionSortV2", () => {
   it.each(testCases)(
-    `should return correct values for test case #$id`,
+    `should return correctly for test case #$id`,
     ({ numbers, expected }) => {
       expect(insertionSortV2([...numbers])).toStrictEqual(expected);
     }

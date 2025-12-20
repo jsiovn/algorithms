@@ -1,4 +1,4 @@
-import { nestedAdditionV1 } from "./01-nested-addition";
+import { nestedAddition } from "./01-nested-addition";
 
 const testCases = [
   {
@@ -23,11 +23,11 @@ const testCases = [
   },
 ];
 
-describe("nestedAdditionV1", () => {
+describe("nestedAddition", () => {
   it.each(testCases)(
-    `should return correct values for test case #$id`,
+    `should return correctly for test case #$id`,
     ({ numbers, expected }) => {
-      expect(nestedAdditionV1([...numbers])).toStrictEqual(expected);
+      expect(nestedAddition([...numbers])).toStrictEqual(expected);
     }
   );
 });

@@ -20,7 +20,7 @@ const testCases = [
 
 describe("solutionV1", () => {
   it.each(testCases)(
-    `should return correct values for test case #$id`,
+    `should return correctly for test case #$id`,
     ({ numbers, expected }) => {
       expect(solutionV1([...numbers])).toStrictEqual(expected);
     }
@@ -29,7 +29,7 @@ describe("solutionV1", () => {
 
 describe("solutionV2", () => {
   it.each(testCases)(
-    `should return correct values for test case #$id`,
+    `should return correctly for test case #$id`,
     ({ numbers, expected }) => {
       expect(solutionV2([...numbers])).toStrictEqual(expected);
     }
