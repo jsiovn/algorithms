@@ -33,7 +33,7 @@ export class ArrayList<T> {
     return this.delete(this.length - 1);
   }
 
-  get(index: number) {
+  get(index: number): T {
     return this.data[index];
   }
 
@@ -51,11 +51,3 @@ export class ArrayList<T> {
     this.length--;
   }
 }
-let list = new ArrayList<string>();
-list.push("12");
-list.push("13");
-list.push("15");
-
-console.log("[paolo-debug] list.data", list.data);
-list.delete(1);
-console.log("[paolo-debug] list.data", list.data);
