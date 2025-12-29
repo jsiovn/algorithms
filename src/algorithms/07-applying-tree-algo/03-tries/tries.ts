@@ -4,8 +4,6 @@
 // for the sake of this exercise, it does not matter which order these strings are returned in or if there are more than three
 // possible suggestions, which three you choose
 
-import { CITY_NAMES } from "./cities";
-
 export const createTrie = (words: string[]) => {
   const root = new TrieNode("");
 
@@ -17,36 +15,36 @@ export const createTrie = (words: string[]) => {
 };
 
 class TrieNode {
-  value: string;
-  children: TrieNode[];
+  char: string;
+  childNodes: TrieNode[];
   terminus: boolean;
 
-  constructor(query: string) {
-    this.children = [];
+  constructor(word: string) {
+    this.childNodes = [];
     this.terminus = false;
-    this.value = query[0];
+    this.char = word[0];
 
-    if (query.length > 1) {
-      this.children.push(new TrieNode(query.substring(1)));
+    if (word.length > 1) {
+      this.childNodes.push(new TrieNode(word.substring(1)));
     } else {
       this.terminus = true;
     }
   }
 
   add(word: string) {
-    const value = word[0];
+    const char = word[0];
     const next = word.substring(1);
 
-    for (let i = 0; i < this.children.length; i++) {
-      const child: TrieNode = this.children[i];
+    for (let i = 0; i < this.childNodes.length; i++) {
+      const childNode: TrieNode = this.childNodes[i];
 
-      // same letter will be ignored to add its children
-      if (child.value === value) {
+      // same letter will be ignored to add its childNodes
+      if (childNode.char === char) {
         if (next) {
-          child.add(next);
+          childNode.add(next);
         }
         else {
-          child.terminus = true;
+          childNode.terminus = true;
         }
         return;
       }
@@ -54,38 +52,38 @@ class TrieNode {
 
 
     // ignore same prefix letters, add remaining letters
-    this.children.push(new TrieNode(word));
+    this.childNodes.push(new TrieNode(word));
   }
 
   complete(search: string) {
     let completions = [];
 
-    for (let i = 0; i < this.children.length; i++) {
-      const child = this.children[i];
-      completions = completions.concat(child._complete(search, "", []));
+    for (let i = 0; i < this.childNodes.length; i++) {
+      const childNode: TrieNode = this.childNodes[i];
+      completions = completions.concat(childNode._complete(search, "", []));
     }
 
     return completions;
   }
 
   private _complete(search: string, built: string, suggestions: string[]): any {
-    if (suggestions.length >= 3 || (search && search[0] !== this.value)) {
+    if (suggestions.length >= 3 || (search && search[0] !== this.char)) {
       return suggestions;
     }
 
     if (this.terminus) {
-      suggestions.push(built + this.value);
+      suggestions.push(built + this.char);
     }
 
-    for (let i = 0; i < this.children.length; i++) {
-      const child = this.children[i];
-      suggestions = child._complete(search.substring(1), built + this.value, suggestions);
+    for (let i = 0; i < this.childNodes.length; i++) {
+      const childNode: TrieNode = this.childNodes[i];
+      suggestions = childNode._complete(search.substring(1), built + this.char, suggestions);
     }
 
     return suggestions;
   }
 }
 
-const root = createTrie(["Sax Antonio", "San Antonio", "San Diego"]);
-const completions = root.complete("san");
-console.log('[paolo-debug] completions', completions);
+// const root = createTrie(["cat", "cow"]);
+// const completions = root.complete("c");
+// console.log('completions', completions);
