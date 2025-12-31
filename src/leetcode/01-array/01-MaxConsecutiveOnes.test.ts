@@ -19,7 +19,7 @@
   nums[i] is either 0 or 1.
 */
 
-function solution(numbers: number[]): number {
+export function solution(numbers: number[]): number {
   let ans = 0;
   let count = 0;
 
@@ -38,26 +38,21 @@ function solution(numbers: number[]): number {
 
 
 
-
-
-
-
-
 // ------------- Unit Test ------------- //
-const testCases = [
-  {
-    id: 1,
-    numbers: [1, 1, 0, 1, 1, 1],
-    expected: 3,
-  },
-  {
-    id: 2,
-    numbers: [1, 0, 1, 1, 0, 1],
-    expected: 2
-  },
-];
-
 describe("MaxConsecutiveOnes", () => {
+  const testCases = [
+    {
+      id: 1,
+      numbers: [1, 1, 0, 1, 1, 1],
+      expected: 3,
+    },
+    {
+      id: 2,
+      numbers: [1, 0, 1, 1, 0, 1],
+      expected: 2
+    },
+  ];
+
   it.each(testCases)(
     `should return correctly for test case #$id`,
     ({ numbers, expected }) => {
