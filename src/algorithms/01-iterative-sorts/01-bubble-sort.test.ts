@@ -22,7 +22,8 @@ describe("solutionV1", () => {
   it.each(testCases)(
     `should return correctly for test case #$id`,
     ({ numbers, expected }) => {
-      expect(solutionV1([...numbers])).toStrictEqual(expected);
+      solutionV1(numbers);
+      expect(numbers).toStrictEqual(expected);
     }
   );
 });
@@ -31,7 +32,8 @@ describe("solutionV2", () => {
   it.each(testCases)(
     `should return correctly for test case #$id`,
     ({ numbers, expected }) => {
-      expect(solutionV2([...numbers])).toStrictEqual(expected);
+      solutionV2(numbers);
+      expect(numbers).toStrictEqual(expected);
     }
   );
 });

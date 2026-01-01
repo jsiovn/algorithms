@@ -17,10 +17,8 @@
 
     d. After this pass, one more number is in its correct position at the end,
         so the next pass checks one fewer element
-
-  3. Return the sorted list
 */
-export function solutionV1(numbers: number[]): number[] {
+export function solutionV1(numbers: number[]) {
   let count = 0;
   let swapped = false;
 
@@ -40,9 +38,6 @@ export function solutionV1(numbers: number[]): number[] {
 
     if (!swapped) break;
   }
-
-  console.log("count v1", count);
-  return numbers;
 }
 
 /*
@@ -61,10 +56,8 @@ export function solutionV1(numbers: number[]): number[] {
           * Mark that a swap happened
 
     c. If no swaps happened during this pass, the list is sorted
-
-  3. Return the sorted list
 */
-export function solutionV2(numbers: number[]): number[] {
+export function solutionV2(numbers: number[]) {
   let count = 0;
   let swapped = false;
 
@@ -81,7 +74,4 @@ export function solutionV2(numbers: number[]): number[] {
       }
     }
   } while (swapped);
-
-  console.log("count v2", count);
-  return numbers;
 }

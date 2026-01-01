@@ -22,7 +22,8 @@ describe("insertionSortV1", () => {
   it.each(testCases)(
     `should return correctly for test case #$id`,
     ({ numbers, expected }) => {
-      expect(insertionSortV1([...numbers])).toStrictEqual(expected);
+      insertionSortV1(numbers);
+      expect(numbers).toStrictEqual(expected);
     }
   );
 });
@@ -31,7 +32,8 @@ describe("insertionSortV2", () => {
   it.each(testCases)(
     `should return correctly for test case #$id`,
     ({ numbers, expected }) => {
-      expect(insertionSortV2([...numbers])).toStrictEqual(expected);
+      insertionSortV2(numbers);
+      expect(numbers).toStrictEqual(expected);
     }
   );
 });

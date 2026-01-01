@@ -13,10 +13,8 @@
           * Move to the previous position
 
     c. Insert the picked value into the gap that was created
-
-  3. Return the sorted list
 */
-export function insertionSortV1(numbers: number[]): number[] {
+export function insertionSortV1(numbers: number[]) {
   for (let i = 1; i < numbers.length; i++) {
     let valueToInsert = numbers[i];
     let j;
@@ -27,14 +25,9 @@ export function insertionSortV1(numbers: number[]): number[] {
 
     numbers[j + 1] = valueToInsert;
   }
-
-  return numbers;
 }
 
-/*
-
-*/
-export function insertionSortV2(numbers: number[]): number[] {
+export function insertionSortV2(numbers: number[]) {
   for (let i = 1; i < numbers.length; i++) {
     let valueToInsert = numbers[i];
     let j = i - 1;
@@ -46,6 +39,4 @@ export function insertionSortV2(numbers: number[]): number[] {
 
     numbers[j + 1] = valueToInsert;
   }
-
-  return numbers;
 }
