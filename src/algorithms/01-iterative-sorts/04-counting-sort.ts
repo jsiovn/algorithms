@@ -1,5 +1,5 @@
 
-export function countingSort(numbers: number[]) {
+export function countingSort(numbers: number[]): number[] {
   // find min, max
   let n = numbers.length;
   let min = numbers[0];
