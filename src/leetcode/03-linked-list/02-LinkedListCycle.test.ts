@@ -73,6 +73,21 @@ function convertArrayListToLinkedList(
 describe("LinkedListCycle", () => {
   const testCases = [
     {
+      id: 1,
+      head: convertArrayListToLinkedList([1, 2, 3, 4, 5], 1),
+      expected: true,
+    },
+    {
+      id: 2,
+      head: convertArrayListToLinkedList([1, 2], 0),
+      expected: true,
+    },
+    {
+      id: 3,
+      head: convertArrayListToLinkedList([1], -1),
+      expected: false,
+    },
+    {
       id: 4,
       head: convertArrayListToLinkedList([1, 2, 3, 4, 5], 4),
       expected: true,
