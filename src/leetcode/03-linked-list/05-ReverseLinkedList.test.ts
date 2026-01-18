@@ -20,7 +20,35 @@
   Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?
 */
 
+// Solution by recursively
 export function solution(head: ListNode | null): ListNode | null {
+  if (!head) return null;
+  let newHead = null;
+
+  // 1-2-3-4-5-null
+  function reverse(node) {
+    // base case
+    // this is tail node
+    if (node.next === null) {
+      newHead = node;
+      return node;
+    } else {
+      // last node's next points to previous node by using call stack order
+      // top is tail
+      // bottom is head
+      let last = reverse(node.next);
+      last.next = node;
+      return node;
+    }
+  }
+
+  reverse(head);
+  head.next = null;
+  return newHead;
+}
+
+// Solution by iteratively
+export function solution1(head: ListNode | null): ListNode | null {
   if (!head) return null;
 
   let slow = null; // n+0
