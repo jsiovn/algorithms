@@ -40,7 +40,46 @@
 export function solution(
   headA: ListNode | null,
   headB: ListNode | null,
-): ListNode | null { }
+): ListNode | null {
+  if (!headA || !headB) return null;
+
+  // get length of headA, headB
+  const m = getLength(headA);
+  const n = getLength(headB);
+
+  // prepare pointers A, B with the same length from tail to head
+  let ptrA = headA;
+  let ptrB = headB;
+  if (m - n > 0) {
+    for (let i = 0; i < m - n; i++) {
+      ptrA = ptrA.next;
+    }
+  } else if (n - m > 0) {
+    for (let i = 0; i < n - m; i++) {
+      ptrB = ptrB.next;
+    }
+  }
+
+  // find intersection
+  while (ptrA !== ptrB) {
+    ptrA = ptrA.next;
+    ptrB = ptrB.next;
+  }
+
+  return ptrA;
+}
+
+function getLength(head: ListNode): number {
+  let counter = 1;
+  let current = head;
+
+  while (current.next) {
+    counter++;
+    current = current.next;
+  }
+
+  return counter;
+}
 
 class ListNode {
   val: number;
@@ -171,8 +210,8 @@ describe("IntersectionOfTwoLinkedLists", () => {
 
   // Example 3: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
   it("should return null when lists do not intersect", () => {
-    const headA = createLinkedList([2, 6, 4]);
-    const headB = createLinkedList([1, 5]);
+    const headA = createLinkedList([2, 6, 4, 2]);
+    const headB = createLinkedList([1, 5, 4, 2]);
     const result = solution(headA, headB);
     expect(result).toBeNull();
   });

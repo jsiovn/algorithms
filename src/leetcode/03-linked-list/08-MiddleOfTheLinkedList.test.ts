@@ -17,7 +17,30 @@
     1 <= Node.val <= 100
 */
 
-export function solution(head: ListNode | null): ListNode | null {}
+export function solution(head: ListNode | null): ListNode | null {
+  if (!head) return null;
+
+  let m = getLength(head);
+  let middle = Math.floor(m / 2);
+  let current = head;
+  for (let i = 0; i < middle; i++) {
+    current = current.next;
+  }
+
+  return current;
+}
+
+function getLength(head: ListNode): number {
+  let counter = 1;
+  let current = head;
+
+  while (current.next) {
+    counter++;
+    current = current.next;
+  }
+
+  return counter;
+}
 
 class ListNode {
   val: number;
