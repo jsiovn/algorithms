@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promisify</title>
+  </head>
+  <body>
+    <script>
+      function fetchUser(id, callback) {
+        setTimeout(() => {
+          if (id <= 0) {
+            callback(new Error("Invalid user id"), null);
+          } else {
+            callback(null, { id, name: "Alice" });
+          }
+        }, 300);
+      }
+
+      // Callback usage — hard to chain or handle errors cleanly
+      fetchUser(1, (err, user) => {
+        if (err) return console.error("Callback error:", err.message);
+        console.log("Callback result:", user);
+      });
+
+      // ─────────────────────────────────────────────
+      // SOLUTION: promisify
+      //
+      // Takes a Node-style callback function and returns
+      // a new function that returns a Promise instead.
+      // ─────────────────────────────────────────────
+      function promisify(fn) {
+        return function (...args) {
+          return new Promise((resolve, reject) => {
+            // Append the (err, result) callback that Node expects
+            fn(...args, (err, result) => {
+              if (err) reject(err);
+              else resolve(result);
+            });
+          });
+        };
+      }
+
+      const fetchUserAsync = promisify(fetchUser);
+
+      // Usage with .then() / .catch()
+      fetchUserAsync(1)
+        .then((user) => console.log("Promise result:", user))
+        .catch((err) => console.error("Promise error:", err.message));
+
+      // Usage with async/await — clean and readable
+      async function main() {
+        try {
+          const user = await fetchUserAsync(1);
+          console.log("Async/await result:", user);
+
+          // Error case
+          const bad = await fetchUserAsync(-1);
+        } catch (err) {
+          console.error("Async/await error:", err.message);
+        }
+      }
+
+      main();
+    </script>
+  </body>
+</html>
