@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debounce</title>
+  </head>
+  <body>
+    <button id="test">Test</button>
+
+    <script>
+      function sayHello(...args) {
+        console.log(...args);
+      }
+
+      function debounce(fn, time) {
+        let timer;
+        return (...args) => {
+          clearTimeout(timer);
+          timer = setTimeout(fn.bind(null, ...args), time);
+        };
+      }
+
+      const buttonElement = document.querySelector("#test");
+      const sayHelloDebounceFn = debounce(sayHello, 500);
+      let counter = 0;
+      buttonElement.addEventListener("click", () => {
+        sayHelloDebounceFn(`Hi there! \nClick time: ${++counter}`);
+      });
+    </script>
+  </body>
+</html>
