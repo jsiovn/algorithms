@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove Duplicate Strings</title>
+  </head>
+  <body>
+    <script>
+      function removeDuplicates(str) {
+        const characters = str.split(" ");
+        const uniqueCharacters = new Set(characters);
+        return [...uniqueCharacters].join(" ");
+      }
+
+      const test = "This is is a test test string in my my variable";
+      const result = removeDuplicates(test);
+      console.log("Output:", result);
+    </script>
+  </body>
+</html>
