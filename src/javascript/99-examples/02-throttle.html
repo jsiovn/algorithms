@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Throttle</title>
+  </head>
+  <body>
+    <button id="test">Test</button>
+
+    <script>
+      function sayHello(...args) {
+        console.log(...args);
+      }
+
+      // last call
+      // check last call vs current time - time
+      function throttle(fn, time) {
+        let lastCall = 0;
+
+        return (...args) => {
+          const now = Date.now();
+          if (now > lastCall + time) {
+            lastCall = now;
+            fn.apply(null, args);
+          }
+        };
+      }
+
+      const buttonElement = document.querySelector("#test");
+      const sayHelloThrottleFn = throttle(sayHello, 1000);
+      let counter = 0;
+      buttonElement.addEventListener("click", () => {
+        sayHelloThrottleFn(`Hi there! \nClick time: ${++counter}`);
+      });
+    </script>
+  </body>
+</html>
